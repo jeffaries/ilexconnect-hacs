@@ -38,16 +38,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 class ILexSensor(CoordinatorEntity, SensorEntity):
 
+    _attr_has_entity_name = True
+
     def __init__(self, serial, coordinator, description):
         """Set up an individual I-LexConnect sensor."""
         super().__init__(coordinator)
         self.entity_description = description
         self._serial = serial
-
-    @property
-    def name(self):
-        """Return the name of the sensor."""
-        return f"{self._serial} {self.entity_description.name}"
 
     @property
     def unique_id(self):
