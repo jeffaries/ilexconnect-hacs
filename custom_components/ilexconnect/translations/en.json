@@ -10,6 +10,9 @@
           "password": "Password"
         }
       }
+    },
+    "abort": {
+      "already_configured": "This account is already configured"
     }
   }
 }
