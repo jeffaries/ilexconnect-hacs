@@ -14,6 +14,7 @@ from .const import (
     API_DTYPE,
     API_STATUS,
     API_SD1,
+    API_SS1,
     API_TOR,
     API_DATE
 )
@@ -76,7 +77,7 @@ class ILexSensor(CoordinatorEntity, SensorEntity):
         sensor_type = self.entity_description.key
         state = None
         value = self._data[sensor_type]
-        if sensor_type in [API_SD1, API_TOR]:
+        if sensor_type in [API_SD1, API_SS1, API_TOR]:
             state = int(value)
         elif sensor_type == API_DATE:
             state = dt.utc_from_timestamp(float(value))
