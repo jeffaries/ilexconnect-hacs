@@ -6,8 +6,7 @@ from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorStateClass,
 )
-from homeassistant.helpers.entity import EntityCategory
-from homeassistant.const import (PERCENTAGE, VOLUME_LITERS)
+from homeassistant.const import PERCENTAGE, EntityCategory, UnitOfTime, UnitOfVolume
 
 DOMAIN = "ilexconnect"
 
@@ -17,11 +16,11 @@ API_TIMEOUT = 20
 LOGGER = logging.getLogger(__package__)
 
 API_CS1    = "getCS1"            # water reserve percent
-API_RES    = "getRES"            # water reserve in liter
-API_IWH    = "getIWH"            # inkomende waterhardheid (fH graden)
-API_OWH    = "getOWH"            # uitgaande waterhardheid (fH graden)
-API_SD1    = "getSD1"            # zout reserve in dagen
-API_TOR    = "getTOR"            # totaal aantal regeneraties
+API_RES    = "getRES"            # water reserve in liters
+API_IWH    = "getIWH"            # incoming water hardness (°fH)
+API_OWH    = "getOWH"            # outgoing water hardness (°fH)
+API_SD1    = "getSD1"            # salt reserve in days
+API_TOR    = "getTOR"            # total number of regenerations
 API_MAC    = "getMAC"            # MAC address
 API_FW     = "firmware"          # firmware type
 API_VER    = "getVER"            # firmware version
@@ -30,7 +29,7 @@ API_STATUS = "status"            # online status
 API_SRN    = "getSRN"            # serial number
 API_DATE   = "getDATasTimestamp" # date of live data
 
-UNIT_WATERHARDHEID = "fH°"
+UNIT_WATER_HARDNESS = "°fH"
 
 SENSOR_TYPES = (
     SensorEntityDescription(
@@ -41,35 +40,36 @@ SENSOR_TYPES = (
     ),
     SensorEntityDescription(
         key=API_RES,
-        native_unit_of_measurement=VOLUME_LITERS,
+        native_unit_of_measurement=UnitOfVolume.LITERS,
         name="Water reserve volume",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key=API_IWH,
-        native_unit_of_measurement=UNIT_WATERHARDHEID,
-        name="Inkomende waterhardheid",
+        native_unit_of_measurement=UNIT_WATER_HARDNESS,
+        name="Incoming water hardness",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key=API_OWH,
-        native_unit_of_measurement=UNIT_WATERHARDHEID,
-        name="Uitgaande waterhardheid",
+        native_unit_of_measurement=UNIT_WATER_HARDNESS,
+        name="Outgoing water hardness",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key=API_SD1,
-        name="Zout reserve",
+        native_unit_of_measurement=UnitOfTime.DAYS,
+        name="Salt reserve",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key=API_TOR,
-        name="Aantal regeneraties",
+        name="Total regenerations",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key=API_DATE,
-        name="last update",
+        name="Last update",
         entity_category=EntityCategory.DIAGNOSTIC,
         device_class=SensorDeviceClass.TIMESTAMP,
     ),

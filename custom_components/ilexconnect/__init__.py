@@ -1,7 +1,6 @@
 import aiohttp
 
-from asyncio import gather
-from async_timeout import timeout
+from asyncio import gather, timeout
 from http import HTTPStatus
 from homeassistant.const import CONF_USERNAME, CONF_PASSWORD, Platform
 from homeassistant.exceptions import ConfigEntryAuthFailed
@@ -15,7 +14,7 @@ PLATFORMS = [Platform.SENSOR]
 
 
 async def async_setup_entry(hass, config_entry):
-    """Set up Awair integration from a config entry."""
+    """Set up I-LexConnect from a config entry."""
     session = async_get_clientsession(hass)
     username = config_entry.data[CONF_USERNAME]
     password = config_entry.data[CONF_PASSWORD]
@@ -32,13 +31,13 @@ async def async_setup_entry(hass, config_entry):
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][config_entry.entry_id] = coordinator
 
-    hass.config_entries.async_setup_platforms(config_entry, PLATFORMS)
+    await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)
 
     return True
 
 
 async def async_unload_entry(hass, config_entry):
-    """Unload Awair configuration."""
+    """Unload an I-LexConnect config entry."""
     unload_ok = await hass.config_entries.async_unload_platforms(
         config_entry, PLATFORMS
     )
