@@ -1,11 +1,11 @@
 {
-  "version": "1.0.1",
-  "domain": "ilexconnect",
+  "version": "0.1.0",
+  "domain": "i-lexconnect",
   "name": "I-LexConnect",
-  "documentation": "https://github.com/bertouttier/ilexconnect-hacs",
-  "issue_tracker": "https://github.com/bertouttier/ilexconnect-hacs/issues",
+  "documentation": "https://github.com/jeffaries/ilexconnect-hacs",
+  "issue_tracker": "https://github.com/jeffaries/ilexconnect-hacs/issues",
   "codeowners": [
-    "@bertouttier"
+    "@jeffaries"
   ],
   "config_flow": true,
   "iot_class": "cloud_polling"
