@@ -8,7 +8,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import PERCENTAGE, EntityCategory, UnitOfTime, UnitOfVolume
 
-DOMAIN = "ilexconnect"
+DOMAIN = "i_lexconnect"
 
 UPDATE_INTERVAL = timedelta(minutes=5)
 API_TIMEOUT = 20

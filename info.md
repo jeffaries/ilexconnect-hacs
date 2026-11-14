@@ -20,4 +20,4 @@ A few sensors will show up:
 
 ## Configuration
 
-After installing the integration using HACS, use the [integration setup in your Home Assistant instance](https://my.home-assistant.io/redirect/config_flow_start/?domain=ilexconnect) to configure. The integration will then automatically discover all sensors.
+After installing the integration using HACS, use the [integration setup in your Home Assistant instance](https://my.home-assistant.io/redirect/config_flow_start/?domain=i_lexconnect) to configure. The integration will then automatically discover all sensors.
