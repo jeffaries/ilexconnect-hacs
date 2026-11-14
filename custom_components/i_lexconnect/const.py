@@ -6,7 +6,7 @@ from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorStateClass,
 )
-from homeassistant.const import PERCENTAGE, EntityCategory, UnitOfTime, UnitOfVolume
+from homeassistant.const import PERCENTAGE, EntityCategory, UnitOfMass, UnitOfTime, UnitOfVolume
 
 DOMAIN = "i_lexconnect"
 
@@ -20,6 +20,8 @@ API_RES    = "getRES"            # water reserve in liters
 API_IWH    = "getIWH"            # incoming water hardness (°fH)
 API_OWH    = "getOWH"            # outgoing water hardness (°fH)
 API_SD1    = "getSD1"            # salt reserve in days
+API_SS1    = "getSS1"            # salt reserve in weeks
+API_SV1    = "getSV1"            # salt quantity in kg
 API_TOR    = "getTOR"            # total number of regenerations
 API_MAC    = "getMAC"            # MAC address
 API_FW     = "firmware"          # firmware type
@@ -60,6 +62,19 @@ SENSOR_TYPES = (
         key=API_SD1,
         native_unit_of_measurement=UnitOfTime.DAYS,
         name="Salt reserve",
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key=API_SS1,
+        native_unit_of_measurement=UnitOfTime.WEEKS,
+        name="Salt reserve (weeks)",
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key=API_SV1,
+        native_unit_of_measurement=UnitOfMass.KILOGRAMS,
+        device_class=SensorDeviceClass.WEIGHT,
+        name="Salt quantity",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
